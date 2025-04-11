@@ -10,7 +10,7 @@ Student.prototype.setSubject = function (subjectName) {
 }
 
 Student.prototype.addMarks = function (...marks) {
-    if (this.hasOwnProperty('marks') && !this.hasOwnProperty('exclude')) {
+    if (this.hasOwnProperty('marks') && !this.hasOwnProperty('excluded')) {
         return this.marks.push(...marks);
     }
 }
@@ -27,11 +27,8 @@ Student.prototype.getAverage = function () {
 }
 
 Student.prototype.exclude = function (reason) {
-    if (!this.hasOwnProperty('marks') || this.marks.length == 0) {
-        delete this.marks;
-        delete this.subject;
-    } else {
-        return 0;
-    }
-    return this.exclude = reason;
+    delete this.marks;
+    delete this.subject;
+
+    this.excluded = reason;
 }
